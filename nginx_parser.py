@@ -4,6 +4,7 @@ import re
 import csv
 import subprocess
 
+
 # 1. Get params - log file, output csv file, commit log
 log_file_name = sys.argv[1]
 csv_file_name = sys.argv[2]
@@ -13,12 +14,10 @@ except:
     commit_message = "Add nginx csv log"
 
 # 2. Parse file with regexp
-pattern = re.compile(r'(?P<host>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<datetime>\d{2}\/[A-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\] \
-    ((?P<getpost>\"(GET|POST) )(?P<url>.+)\") (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>.+)["]) (["](?P<useragent>.+)["]) \
-        (?P<num1>\d+) (?P<num2>\d+.\d+) \[(?P<user>.+)\] (?P<brack>\[\]) (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,4}) (?P<num3>\d+) \
-            (?P<num4>\d+.\d+) (?P<code>\d+) (?P<id>.+)')
+pattern = re.compile(r'(?P<host>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<datetime>\d{2}\/[A-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\] ((?P<getpost>\"(GET|POST) )(?P<url>.+)\") (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>.+)["]) (["](?P<useragent>.+)["]) (?P<num1>\d+) (?P<num2>\d+.\d+) \[(?P<user>.+)\] (?P<brack>\[\]) (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,4}) (?P<num3>\d+) (?P<num4>\d+.\d+) (?P<code>\d+) (?P<id>.+)')
 
 csv_header = ['host', 'datetime', 'getpost', 'url', 'statuscode', 'bytessent', 'refferer', 'useragent', 'num1', 'num2', 'user', 'brack', 'ip', 'num3', 'num4', 'code', 'id']
+csv_data = []
 
 file = open(log_file_name)
 
