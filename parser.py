@@ -5,9 +5,13 @@ import csv
 import subprocess
 
 
-# 1. Get params - log file, output csv file
+# 1. Get params - log file, output csv file, commit log
 log_file_name = sys.argv[1]
 csv_file_name = sys.argv[2]
+try:
+    commit_message = sys.argv[3]
+except:
+    commit_message = "Add nginx csv log"
 
 # 2. Parse file with regexp
 pattern = re.compile(r'(?P<host>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<datetime>\d{2}\/[A-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\] ((?P<getpost>\"(GET|POST) )(?P<url>.+)\") (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>.+)["]) (["](?P<useragent>.+)["]) (?P<num1>\d+) (?P<num2>\d+.\d+) \[(?P<user>.+)\] (?P<brack>\[\]) (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,4}) (?P<num3>\d+) (?P<num4>\d+.\d+) (?P<code>\d+) (?P<id>.+)')
@@ -33,5 +37,5 @@ file.close()
 
 # 4. Add file to git
 subprocess.run(["git", "add", f"{csv_file_name}"])
-subprocess.run(["git", "commit", "-am", "Add nginx csv log"])
+subprocess.run(["git", "commit", "-am", f"{commit_message}"])
 
