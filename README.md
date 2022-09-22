@@ -18,4 +18,4 @@ Script takes 3 arguments. First 2 – required and 1 - optional.
 
 Example:
 
- python3 parser.py nginx.log result.csv "New csv file"
+ python3 nginx_parser.py nginx.log result.csv "New csv file"
