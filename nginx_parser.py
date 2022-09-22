@@ -4,7 +4,6 @@ import re
 import csv
 import subprocess
 
-
 # 1. Get params - log file, output csv file, commit log
 log_file_name = sys.argv[1]
 csv_file_name = sys.argv[2]
@@ -20,7 +19,6 @@ pattern = re.compile(r'(?P<host>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<da
             (?P<num4>\d+.\d+) (?P<code>\d+) (?P<id>.+)')
 
 csv_header = ['host', 'datetime', 'getpost', 'url', 'statuscode', 'bytessent', 'refferer', 'useragent', 'num1', 'num2', 'user', 'brack', 'ip', 'num3', 'num4', 'code', 'id']
-csv_data = []
 
 file = open(log_file_name)
 
