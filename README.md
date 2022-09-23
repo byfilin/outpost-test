@@ -19,3 +19,8 @@ Script takes 3 arguments. First 2 – required and 1 - optional.
 Example:
 
  python3 nginx_parser.py nginx.log result.csv "New csv file"
+
+ #### Docker
+ To receive result of script start docker image in such manner:
+ - docker build -t parser .
+ - docker run -d -it --name parser --mount type=bind,source="$(pwd)",target=/app
