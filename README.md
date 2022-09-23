@@ -21,6 +21,7 @@ Example:
  python3 nginx_parser.py nginx.log result.csv "New csv file"
 
  #### Docker
- To receive result of script start docker image in such manner:
+ I made "executable container" – mount dir with script to execute it. To receive result of script start docker image in such manner:
+ - Open directory with script
  - docker build -t parser .
- - docker run -d -it --name parser --mount type=bind,source="$(pwd)",target=/app
+ - docker run --mount type=bind,source="$(pwd)",target=/app --rm parser
